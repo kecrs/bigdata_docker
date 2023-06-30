@@ -93,21 +93,21 @@ services:
         limits:
           memory: 500m
 
-  hue:
-    image: fjardim/hue
-    hostname: hue
-    container_name: hue
-    dns: 8.8.8.8
-    ports:
-    - "8888:8888"
-    volumes:
-      - ./data/hue/hue-overrides.ini:/usr/share/hue/desktop/conf/z-hue.ini
-    depends_on:
-      - "database"
-    deploy:
-      resources:
-        limits:
-          memory: 500m
+  # hue:
+  #   image: fjardim/hue
+  #   hostname: hue
+  #   container_name: hue
+  #   dns: 8.8.8.8
+  #   ports:
+  #   - "8888:8888"
+  #   volumes:
+  #     - ./data/hue/hue-overrides.ini:/usr/share/hue/desktop/conf/z-hue.ini
+  #   depends_on:
+  #     - "database"
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 500m
   
   database:
     image: fjardim/mysql
@@ -161,35 +161,35 @@ services:
         limits:
           memory: 500m
 
-  presto-coordinator:
-    image: fjardim/prestodb
-    container_name: presto
-    hostname: presto
-    ports:
-      - "8080:8080"
-    depends_on:
-      - hive-server  
-    deploy:
-      resources:
-        limits:
-          memory: 500m
+  # presto-coordinator:
+  #   image: fjardim/prestodb
+  #   container_name: presto
+  #   hostname: presto
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - hive-server  
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 500m
 
-  hbase-master:
-    image: fjardim/hbase-master
-    container_name: hbase-master
-    hostname: hbase-master
-    env_file:
-      - ./data/hbase/hbase-standalone.env
-    environment:
-      SERVICE_PRECONDITION: "namenode:50070 datanode:50075 zookeeper:2181"
-    ports:
-      - 16010:16010
-    depends_on:
-      - namenode
-    deploy:
-      resources:
-        limits:
-          memory: 500m
+  # hbase-master:
+  #   image: fjardim/hbase-master
+  #   container_name: hbase-master
+  #   hostname: hbase-master
+  #   env_file:
+  #     - ./data/hbase/hbase-standalone.env
+  #   environment:
+  #     SERVICE_PRECONDITION: "namenode:50070 datanode:50075 zookeeper:2181"
+  #   ports:
+  #     - 16010:16010
+  #   depends_on:
+  #     - namenode
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         memory: 500m
     
 #  mongo:
 #    image: fjardim/mongo
@@ -290,7 +290,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1g
+          memory: 4g
 
 volumes:
   pgdata:
